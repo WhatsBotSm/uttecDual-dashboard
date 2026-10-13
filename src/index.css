@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta institucional: azules/grises, sobria */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  --font-sans: 'Segoe UI', system-ui, Roboto, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 font-sans antialiased;
+}
+
+/* Reportes imprimibles (formato oficial "Reporte de Actividades del Estudiante de Educación
+   Dual"): en pantalla se ven como una hoja blanca centrada; al imprimir, se oculta todo lo
+   demás (nav, botones) y cada .reporte-hoja ocupa una página A4. */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .reporte-hoja {
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always;
+  }
+
+  .reporte-hoja:last-child {
+    page-break-after: auto;
+  }
+}
